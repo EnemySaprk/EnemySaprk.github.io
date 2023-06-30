@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DAZN España</title>
+  <link rel="stylesheet" href="deportes.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      fetch('"eventos.json?"+x')
+        .then(response => response.json())
+        .then(data => {
+          // Aquí puedes acceder a los datos obtenidos (el arreglo de eventos) y realizar las operaciones necesarias
+          // Por ejemplo, puedes generar el contenido HTML para los eventos y agregarlo al DOM
+          var eventosHTML = '';
+
+          for (var i = 0; i < data.length; i++) {
+            var evento = data[i];
+            eventosHTML += '<li>';
+            eventosHTML += '<a href="' + evento.url + '">';
+            eventosHTML += '<img src="' + evento.img + '" alt="' + evento.title + '">';
+            eventosHTML += '<div class="live-overlay">';
+            eventosHTML += '<h3>' + evento.title + '</h3>';
+            eventosHTML += '<p>' + evento.description + '</p>';
+            eventosHTML += '<button>Ver en Vivo</button>';
+            eventosHTML += '</div>';
+            eventosHTML += '</a>';
+            eventosHTML += '</li>';
+          }
+
+          $('.live-events-list').html(eventosHTML);
+        })
+        .catch(error => {
+          console.error('Error al obtener los eventos:', error);
+        });
+    });
+  </script>
+</head>
+<body>
+  <header>
+    <!-- Código del encabezado omitido por brevedad -->
+  </header>
+  
+  <main>
+    <section>
+      <h2>Eventos en Vivo</h2>
+      <div class="container">
+        <ul class="live-events-list">
+          <!-- Aquí se generará el contenido HTML para los eventos -->
+        </ul>
+      </div>
+    </section>
+  </main>
+  
+  <footer>
+    <!-- Código del pie de página omitido por brevedad -->
+  </footer>
+</body>
+</html>

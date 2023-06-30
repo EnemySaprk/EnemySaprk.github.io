@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Eventos de Star+</title>
+  <link href="../../css/bootstrap.css?v3" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <h1>Eventos de Star+</h1>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Estado</th>
+          <th>Liga</th>
+          <th>Título</th>
+          <th>Imagen</th>
+        </tr>
+      </thead>
+      <tbody id="eventos-table-body"></tbody>
+    </table>
+  </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $.ajax({
+        url: "https://librefutboltv.com/embed/eventos/?r=aHR0cHM6Ly90ZWNoZmxvd2VyLmJpby9zdGFyX2p3cC5odG1sP2dldD1odHRwczovL2xpdmUtZnRjLW5hLXNvdXRoLTIubWVkaWEuc3Rhcm90dC5jb20vZ3J1MS9xYjAxL3N0YXJwbHVzL2V2ZW50LzIwMjMvMDYvMjkvU2FudG9zX0JSQV92c19CbG9vbWluZ19CT18yMDIzMDYyOV8xNjg4MDY4ODM3MDI5L2N0ci1hbGwtY29tcGxldGUubTN1OCZpbWc9aHR0cHM6Ly9wcm9kLXJpcGN1dC1kZWxpdmVyeS5kaXNuZXktcGx1cy5uZXQvdjEvdmFyaWFudC9zdGFyLzFEOTcxRkZBMEE4MjQwNDA5MkJGMjdBMkM1OTBCRTRBMEI0MzEyQkE5N0Y5MjA4OURDM0UwOTAxRTlENTA4NzQvc2NhbGU/d2lkdGg9MTkyMCZhc3BlY3RSYXRpbz0xLjc4JmZvcm1hdD1qcGVnJmtleT04ZDJmZDY5Mzk5NGI0MzM1YTZmY2JiMjkyNTgzOTI2NyZrZXkyPWM1NGFmZTY4YTJmNTFhMjJkN2Q0ZmY3NGUyYjA0MDAx",
+        type: "get",
+        success: function(data) {
+          var eventos = data;
+
+          var tableBody = $("#eventos-table-body");
+
+          for (var i = 0; i < eventos.length; i++) {
+            var evento = eventos[i];
+
+            var status = evento.status;
+            var league = evento.league;
+            var title = evento.title;
+            var img = evento.img;
+
+            var row = $("<tr></tr>");
+            row.append("<td>" + status + "</td>");
+            row.append("<td>" + league + "</td>");
+            row.append("<td>" + title + "</td>");
+            row.append("<td><img src='https://prod-ripcut-delivery.disney-plus.net/v1/variant/star/" + img + "/scale?width=100&aspectRatio=1.78&format=jpeg' alt='Imagen del evento'></td>");
+
+            tableBody.append(row);
+          }
+        }
+      });
+    });
+  </script>
+</body>
+</html>
