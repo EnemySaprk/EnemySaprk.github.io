@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Mi página web</title>
+  <style>
+    .ad {
+      display: none;
+    }
+  </style>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // Oculta los elementos de anuncios
+      var ads = document.querySelectorAll('.ad');
+      ads.forEach(function(ad) {
+        ad.style.display = 'none';
+      });
+
+      // Bloquea scripts de anuncios
+      var adScripts = document.querySelectorAll('script[src*="bestformula.one"]');
+      adScripts.forEach(function(script) {
+        script.remove();
+      });
+    });
+  </script>
+</head>
+<body>
+  <h1>Mi página web</h1>
+  <p>Enlace al video: <a href="https://bestformula.one/dtvpl2.html?id=1106">Ver video</a></p>
+  
+  <!-- Ejemplo de anuncio -->
+  <div class="ad">
+    <!-- Contenido del anuncio -->
+  </div>
+
+  <!-- Otro contenido de la página -->
+</body>
+</html>
